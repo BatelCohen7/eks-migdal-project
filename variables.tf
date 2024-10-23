@@ -1,5 +1,4 @@
-# variables.tf
-variable "aws_region" {
+﻿variable "aws_region" {
   description = "AWS region for the EKS cluster"
   type        = string
   default     = "eu-west-1"
