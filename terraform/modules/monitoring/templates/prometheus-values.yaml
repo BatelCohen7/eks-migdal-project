@@ -1,0 +1,60 @@
+prometheusOperator:
+  enabled: true
+  logLevel: info
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    retention: ${prometheus_retention}
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp2
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: ${prometheus_storage_size}
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "500m"
+      limits:
+        memory: "2Gi"
+        cpu: "1000m"
+
+grafana:
+  enabled: true
+  persistence:
+    enabled: true
+    size: ${grafana_storage_size}
+    storageClassName: gp2
+  
+  dashboards:
+    default:
+      cluster-monitoring:
+        gnetId: 315
+        revision: 3
+        datasource: Prometheus
+      node-exporter:
+        gnetId: 1860
+        revision: 23
+        datasource: Prometheus
+      kubernetes-pods:
+        gnetId: 6417
+        revision: 1
+        datasource: Prometheus
+
+alertmanager:
+  enabled: true
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: 'null'
+      routes:
+      - match:
+          severity: critical
+        receiver: 'null'
