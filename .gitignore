@@ -1,0 +1,29 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+terraform.tfvars
+.terraformrc
+terraform.rc
+.terraform.lock.hcl
+
+# OS
+.DS_Store
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Local environment
+.env
+.envrc
+
+# AWS
+.aws/
+
+# IDE
+.vscode/
+*.iml
