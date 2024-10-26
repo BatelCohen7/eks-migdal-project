@@ -1,0 +1,33 @@
+name: 'Infrastructure CI/CD'
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'terraform/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'terraform/**'
+
+jobs:
+  validate:
+    name: 'Validate Infrastructure'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    - name: Terraform Format
+      run: terraform fmt -check
+      working-directory: ./terraform
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ./terraform
+
+    - name: Terraform Validate
+      run: terraform validate
+      working-directory: ./terraform
