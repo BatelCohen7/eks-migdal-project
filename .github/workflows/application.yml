@@ -18,14 +18,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # בדיקת תקינות קבצי Kubernetes
+    # Checking the integrity of Kubernetes files
     - name: Validate Kubernetes manifests
       uses: azure/k8s-lint@v1
       with:
         manifests: |
           k8s/hello-world/*.yaml
 
-    # בנייה ודחיפה של תמונת Docker
+    # Building and pushing the Docker image
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
@@ -51,7 +51,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # התחברות ל-AWS
+    # connect to AWS
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -59,11 +59,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-1
 
-    # עדכון תצורת kubectl
+    # Update kubectl
     - name: Update kube config
       run: aws eks update-kubeconfig --name migdal-eks-cluster --region eu-west-1
 
-    # פריסת האפליקציה
+    # deploy app
     - name: Deploy application
       run: |
         kubectl apply -f k8s/hello-world/namespace.yaml
