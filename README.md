@@ -157,7 +157,7 @@ kubectl get svc -n hello-world`
 
 
 ```bash
-Quick Monitoring Check
+# Quick Monitoring Check
 kubectl get pods -n monitoring
 kubectl get svc -n monitoring
 ```
