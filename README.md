@@ -129,6 +129,39 @@ kubectl get deployments -n hello-world
 # Verify service
 kubectl get svc -n hello-world`
 ```
+### Monitoring Stack
+
+#### Prometheus & Grafana Integration
+
+- Resource metrics collection
+- Real-time visualization
+- Custom dashboards for cluster and application monitoring
+- Alert configuration for critical metrics
+
+
+
+### Security Implementation
+
+#### Network Security
+
+- VPC isolation with security groups
+- Network policies for pod communication
+- IAM roles with least privilege access
+
+
+#### Secret Management
+
+- AWS KMS for encryption
+- Secure secrets handling
+- Access control policies
+
+
+```bash
+Quick Monitoring Check
+kubectl get pods -n monitoring
+kubectl get svc -n monitoring
+```
+> Note: These features were added as enhancements to the base project requirements, demonstrating additional DevOps capabilities and best practices.
 
 ### Project Requirements Fulfilled`
 
