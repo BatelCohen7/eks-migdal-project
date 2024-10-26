@@ -82,7 +82,7 @@ resource "aws_lb_listener" "http" {
   }
 }
 
-# מאפשר לאפליקציות ב-EKS להשתמש ב-ALB באופן אוטומטי
+# Allows EKS apps to use Alb automatically
 resource "helm_release" "aws_load_balancer_controller" {
   name       = "aws-load-balancer-controller"
   repository = "https://aws.github.io/eks-charts"

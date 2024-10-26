@@ -7,7 +7,7 @@ locals {
   }
 }
 
-# 1. הגדרת Namespace ל-ArgoCD
+# 1. Set up nameSpace to ArgoCD
 resource "kubernetes_namespace" "argocd" {
   metadata {
     name = "argocd"
@@ -17,8 +17,7 @@ resource "kubernetes_namespace" "argocd" {
   }
 }
 
-# 2. התקנת ArgoCD באמצעות Helm
-resource "helm_release" "argocd" {
+# 2. Install ArgoCD using Helmresource "helm_release" "argocd" {
   name             = "argocd"
   repository       = "https://argoproj.github.io/argo-helm"
   chart            = "argo-cd"
@@ -37,7 +36,7 @@ resource "helm_release" "argocd" {
   }
 }
 
-# 3. הגדרת אפליקציית Hello World ב-ArgoCD
+# 3. Set up the Heello World app at ArgoCD
 resource "kubernetes_manifest" "hello_world_app" {
   depends_on = [helm_release.argocd]
 
