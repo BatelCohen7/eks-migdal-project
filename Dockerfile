@@ -1,7 +1,16 @@
 FROM python:3.9-slim
 
+# Install Flask
+RUN pip install flask
+
+# Copy the app file into the container
+COPY app.py /app/app.py
+
+# Set the working directory
 WORKDIR /app
 
-COPY hello_world.py .
+# Expose the port that Flask will run on
+EXPOSE 5000
 
-CMD ["python", "hello_world.py"]
+# Command to run the app
+CMD ["python", "app.py"]
