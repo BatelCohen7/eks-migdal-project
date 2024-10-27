@@ -1,7 +1,7 @@
-FROM nginx:alpine
+FROM python:3.9-slim
 
-COPY k8s/hello-world/index.html /usr/share/nginx/html/index.html
+WORKDIR /app
 
-EXPOSE 80
+COPY hello_world.py .
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["python", "hello_world.py"]

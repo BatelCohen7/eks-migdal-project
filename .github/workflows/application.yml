@@ -69,6 +69,7 @@ jobs:
           sed -i "s|image:.*|image: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:${NEW_TAG}|" k8s/hello-world/deployment.yaml
           
           # Apply Kubernetes manifests
+        
           kubectl apply -f k8s/hello-world/namespace.yaml
           kubectl apply -f k8s/hello-world/deployment.yaml
           kubectl apply -f k8s/hello-world/service.yaml
