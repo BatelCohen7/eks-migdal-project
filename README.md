@@ -44,8 +44,9 @@ This project implements a production-ready Kubernetes infrastructure on AWS usin
     k8s/
     └── hello-world/
         ├── deployment.yaml  # Kubernetes deployment
-        ├── service.yaml     # Service configuration
-        └── index.html       # Simple hello world page
+        ├── manifest.yaml 
+        ├── namespace.yaml 
+        └── service.html       #Service configuration
 ### CI/CD Configuration
 
 
@@ -103,8 +104,6 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 ## GitHub Repository Configuration
 ### Required Secrets
 
-- `AWS_ACCESS_KEY_ID: `AWS access key
-- `AWS_SECRET_ACCESS_KEY:` AWS secret key
 - `DOCKERHUB_USERNAME: `Docker Hub username
 - `DOCKERHUB_TOKEN: `Docker Hub access token
 
