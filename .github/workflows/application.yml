@@ -22,10 +22,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Extract Git SHA
+        id: vars
+        run: echo "GIT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world-webapp:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world-webapp:${{ env.GIT_SHA }}
