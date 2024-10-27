@@ -1,0 +1,6 @@
+New-Item -Force -Path k8s/hello-world/namespace.yaml -Value @"
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hello-world
+"@

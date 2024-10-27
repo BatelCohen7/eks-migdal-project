@@ -1,4 +1,5 @@
-﻿apiVersion: apps/v1
+New-Item -Force -Path k8s/hello-world/deployment.yaml -Value @"
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world
@@ -25,21 +26,4 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hello-world
-  namespace: hello-world
-spec:
-  selector:
-    app: hello-world
-  ports:
-  - port: 80
-    targetPort: 80
-  type: LoadBalancer
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: hello-world
+"@
