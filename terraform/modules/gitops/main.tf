@@ -32,7 +32,7 @@ resource "kubernetes_namespace" "argocd" {
 
   set {
     name  = "server.extraArgs[0]"
-    value = "--insecure"  # לסביבת פיתוח בלבד
+    value = "--insecure"  
   }
 }
 
