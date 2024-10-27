@@ -41,7 +41,7 @@ This project implements a production-ready Kubernetes infrastructure on AWS usin
 ### Application Structure
 
 
-    Copyk8s/
+    k8s/
     └── hello-world/
         ├── deployment.yaml  # Kubernetes deployment
         ├── service.yaml     # Service configuration
@@ -122,7 +122,6 @@ kubectl get nodes`
 
 ### Application Testing
 ```bash
-bash
 # Check deployments
 kubectl get deployments -n hello-world
 
