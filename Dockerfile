@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 # Install Flask
-RUN pip install flask
+RUN pip install flask 
 
 # Copy the app file into the container
 COPY app.py /app/app.py
