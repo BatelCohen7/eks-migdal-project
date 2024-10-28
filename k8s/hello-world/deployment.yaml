@@ -15,7 +15,6 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: batelyerushalmiii/hello-world-webapp:latest  
+          image: batelyerushalmiii/hello-world-webapp:bd3eb17
           ports:
-            - containerPort: 5000 
-          
+            - containerPort: 5000
