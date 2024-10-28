@@ -33,27 +33,33 @@ This project implements a production-ready Kubernetes infrastructure on AWS usin
 
     terraform/
     ├── modules/
-    │   ├── eks/        # EKS cluster configuration
-    │   ├── networking/ # VPC and network settings
-    │   └── alb/        # Application Load Balancer
+    │   ├── alb/          # Load Balancer configuration
+    │   ├── eks/          # EKS cluster configuration
+    │   ├── gitops/       # ArgoCD setup
+    │   ├── monitoring/   # Monitoring stack
+    │   ├── networking/   # VPC and network settings
+    │   └── security/     # Security configurations
     ├── environments/
-    │   └── prod/       # Production environment
+    │   ├── dev/          # Development environment
+    │   └── prod/         # Production environment
 ### Application Structure
 
 
-    k8s/
-    └── hello-world/
-        ├── deployment.yaml  # Kubernetes deployment
-        ├── manifest.yaml 
-        ├── namespace.yaml 
-        └── service.html       #Service configuration
+    k8s/hello-world/
+    ├── deployment.yaml  # Kubernetes deployment
+    ├── manifest.yaml    # ArgoCD manifest
+    ├── namespace.yaml   # Namespace definition
+    └── service.yaml     # Service configuration
 ### CI/CD Configuration
 
 
-    .github/
-    └── workflows/
-        ├── infrastructure.yml  # Infrastructure pipeline
-        └── application.yml     # Application pipeline
+    .github/workflows/
+    ├── application.yml    # Application deployment pipeline
+    └── infrastructure.yml # Infrastructure validation pipeline
+    
+    ci-cd/scripts/
+    ├── deploy.sh         # Deployment automation
+    └── validate.sh       # Validation scripts
 ## Setup & Deployment
 ### Prerequisites
 
@@ -81,8 +87,11 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 #### 3.Application Deployment
 
-- Push changes to main branch
-- ArgoCD will automatically sync and deploy
+Execute The Deployment Script:
+```bash
+./ci-cd/scripts/deploy.sh
+
+```
 
 
 
@@ -91,14 +100,14 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 - Validates Terraform configurations
 - Ensures proper formatting
-- Applies infrastructure changes
-- Runs on infrastructure file changes
+- Runs Terraform init and validate
+- Triggers on infrastructure file changes
 
 ### Application Pipeline
 
-- Builds Docker image
-- Validates Kubernetes manifests
-- Deploys to EKS via ArgoCD
+- Builds and tags Docker images
+- Pushes to Docker Hub
+- Updates Kubernetes manifests
 - Runs on application file changes
 
 ## GitHub Repository Configuration
@@ -163,11 +172,11 @@ kubectl get svc -n monitoring
 
 ### Project Requirements Fulfilled`
 
-✅ EKS Cluster creation with custom modules
-✅ ALB implementation through Terraform
-✅ ArgoCD integration
-✅ Simple CI/CD pipeline
-✅ Hello World application deployment
+- ✅ EKS Cluster creation with custom modules
+- ✅ ALB implementation through Terraform
+- ✅ ArgoCD integration
+- ✅ Simple CI/CD pipeline
+- ✅ Hello World application deployment
 
 ### Best Practices Implemented
 
