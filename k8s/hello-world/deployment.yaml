@@ -15,8 +15,9 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: batelyerushalmiii/hello-world-webapp:latest  
+          image: batelyerushalmiii/hello-world-webapp:ed8f745
           ports:
+<<<<<<< HEAD
             - containerPort: 5000 
           readinessProbe:
           httpGet:
@@ -30,3 +31,6 @@ spec:
             port: 5000
           initialDelaySeconds: 10
           periodSeconds: 15
+=======
+            - containerPort: 5000
+>>>>>>> c8cf906eb56b7fd94431f354a59b5e0866356989
